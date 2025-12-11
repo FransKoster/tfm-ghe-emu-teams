@@ -78,7 +78,6 @@ module "emu_teams" {
       description     = "Shared platform engineering team"
       privacy         = "closed"
       idp_group_names = [
-        "g-ug-aad-SRE-engineers",
         "ghe-cloudregie-admins",
       ]
     }
@@ -88,7 +87,7 @@ module "emu_teams" {
       description     = "Data engineering team"
       privacy         = "closed"
       idp_group_names = [
-        "ghe-cursisten",
+        "ghe-data-engineers",
       ]
     }
   }
@@ -112,20 +111,22 @@ module "emu_teams" {
 - If you add parent teams, set `parent_team_id` to the parent’s numeric team ID.Reference for manual linking of EMU IdP groups to teams in an existing organization:
 
 https://docs.github.com/en/enterprise-cloud@latest/admin/managing-iam/provisioning-user-accounts-with-scim/managing-team-memberships-with-identity-provider-groups
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.0 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | >= 6.8.3 |
+| Name                                                                     | Version  |
+| ------------------------------------------------------------------------ | -------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.6.0 |
+| <a name="requirement_github"></a> [github](#requirement_github)          | >= 6.8.3 |
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_github"></a> [github](#provider\_github) | 6.9.0 |
-| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
+| Name                                                               | Version |
+| ------------------------------------------------------------------ | ------- |
+| <a name="provider_github"></a> [github](#provider_github)          | 6.9.0   |
+| <a name="provider_terraform"></a> [terraform](#provider_terraform) | n/a     |
 
 ## Modules
 
@@ -133,24 +134,25 @@ No modules.
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [github_emu_group_mapping.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/emu_group_mapping) | resource |
-| [github_team.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team) | resource |
-| [terraform_data.validate_group_names](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data) | resource |
-| [github_external_groups.emu](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/external_groups) | data source |
+| Name                                                                                                                                 | Type        |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
+| [github_emu_group_mapping.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/emu_group_mapping) | resource    |
+| [github_team.this](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/team)                           | resource    |
+| [terraform_data.validate_group_names](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/resources/data)        | resource    |
+| [github_external_groups.emu](https://registry.terraform.io/providers/integrations/github/latest/docs/data-sources/external_groups)   | data source |
 
 ## Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_teams"></a> [teams](#input\_teams) | Map of teams to create and their EMU IdP group names to link. | <pre>map(object({<br/>    name            = string<br/>    description     = optional(string, "")<br/>    privacy         = optional(string, "closed")<br/>    parent_team_id  = optional(string)<br/>    idp_group_names = list(string)<br/>  }))</pre> | n/a | yes |
+| Name                                             | Description                                                   | Type                                                                                                                                                                                                             | Default | Required |
+| ------------------------------------------------ | ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | :------: |
+| <a name="input_teams"></a> [teams](#input_teams) | Map of teams to create and their EMU IdP group names to link. | <pre>map(object({<br/> name = string<br/> description = optional(string, "")<br/> privacy = optional(string, "closed")<br/> parent_team_id = optional(string)<br/> idp_group_names = list(string)<br/> }))</pre> | n/a     |   yes    |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_external_groups"></a> [external\_groups](#output\_external\_groups) | All EMU external groups available in the organization. |
-| <a name="output_group_mappings"></a> [group\_mappings](#output\_group\_mappings) | EMU group mappings keyed by team and group id. |
-| <a name="output_teams"></a> [teams](#output\_teams) | Details for each team created by the module. |
+| Name                                                                             | Description                                            |
+| -------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| <a name="output_external_groups"></a> [external_groups](#output_external_groups) | All EMU external groups available in the organization. |
+| <a name="output_group_mappings"></a> [group_mappings](#output_group_mappings)    | EMU group mappings keyed by team and group id.         |
+| <a name="output_teams"></a> [teams](#output_teams)                               | Details for each team created by the module.           |
+
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
