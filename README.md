@@ -70,7 +70,7 @@ provider "github" {
 }
 
 module "emu_teams" {
-  source = "./modules/emu-teams"
+  source = "../../"
 
   teams = {
     platform = {

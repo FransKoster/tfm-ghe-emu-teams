@@ -7,7 +7,7 @@ module "emu_teams" {
       description = "Shared platform engineering team"
       privacy     = "closed"
       idp_group_names = [
-        "ghe-SRE-engineers",
+        "g-ug-aad-SRE-engineers",
       ]
     }
 
@@ -16,7 +16,7 @@ module "emu_teams" {
       description = "Data engineering team"
       privacy     = "closed"
       idp_group_names = [
-        "ghe-data-admins"
+        "ghe-cloudregie-admins"
       ]
     }
   }
